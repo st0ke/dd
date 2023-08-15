@@ -1,9 +1,9 @@
 (in-package #:mapgen)
 
 (defstruct texture-mapping
-  (transform-x) ; xxscale xyscale xoffset
-  (transform-y) ; yxscale yyscale yoffset
-  (filepath))
+  transform-x ; xxscale xyscale xoffset
+  transform-y ; yxscale yyscale yoffset
+  filepath)
 
 (defun make-texture-mapping-simple (&key filepath size (scale 1.0))
   (make-texture-mapping
@@ -12,20 +12,20 @@
     :filepath filepath))
 
 (defstruct plane
-  (normal)
-  (distance))
+  normal
+  distance)
 
 (defstruct brush-plane
-  (plane)
-  (texture))
+  plane
+  texture)
 
 (defstruct brush
-  (planes)) ; brush-planes
+  planes) ; brush-planes
 
 (defstruct entity
-  (classname)
-  (name)
-  (properties))
+  classname
+  name
+  properties)
 
 (defstruct map-content
   brushes

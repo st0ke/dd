@@ -39,14 +39,14 @@
   (make-room-generation-config
     :height 128
     :floor-texture (make-texture-mapping-simple
-                     :size (3d-vectors:vec2 256 256) :scale 0.5
-                     :filepath "textures/base_floor/ghofloor1c")
+                     :size (3d-vectors:vec2 64 64) :scale 0.5
+                     :filepath "textures/base_floor/diamond05")
     :ceiling-texture (make-texture-mapping-simple
-                     :size (3d-vectors:vec2 256 128) :scale 0.5
-                     :filepath "textures/base_floor/ghoceiling2")
+                     :size (3d-vectors:vec2 64 128) :scale 0.5
+                     :filepath "textures/base_floor/ghotile2")
     :wall-texture (make-texture-mapping-simple
                      :size (3d-vectors:vec2 256 256) :scale 0.5
-                     :filepath "textures/base_wall/a_rib_panel_04_fin")))
+                     :filepath "textures/base_wall/rib_panel2")))
 
 (defun generate-map-0 (config)
   (combine-map-content
@@ -117,3 +117,4 @@
     (generate-map-0 (make-common-generation-config
                     :rooms (list *default-room-config*)
                     :world-size (3d-vectors:vec3 512 512 128)))))
+

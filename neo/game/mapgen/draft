@@ -5,6 +5,7 @@ local ASDF initialization
  `(:source-registry
      :ignore-inherited-configuration
      (:tree "D:\\projects\\001-games\\g02\\d3\\repos\\dd\\neo\\game\\mapgen\\third-party\\")))
-(asdf:load-system :3d-vectors)
 
      ;(:tree (:here "third-party/"))))
+
+(setf *random-state* (make-random-state t))
