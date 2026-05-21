@@ -42,7 +42,11 @@ If you have questions concerning this license or the applicable additional terms
 	#endif
 #endif
 
-#include <SDL_opengl.h>
+#ifdef D3_SDL3
+  #include <SDL3/SDL_opengl.h>
+#else // SDL1.2 or SDL2
+  #include <SDL_opengl.h>
+#endif
 
 #if defined( ID_DEDICATED ) && defined( _WIN32 )
 // restore WINGDIAPI
@@ -106,6 +110,14 @@ extern PFNGLSTENCILOPSEPARATEPROC qglStencilOpSeparate;
 extern	PFNGLCOMPRESSEDTEXIMAGE2DARBPROC	qglCompressedTexImage2DARB;
 extern	PFNGLGETCOMPRESSEDTEXIMAGEARBPROC	qglGetCompressedTexImageARB;
 
+// ARB_texture_compression_bptc - uses ARB_texture_compression, just adds new constants
+// that might be missing in old OpenGL headers
+#ifndef GL_COMPRESSED_RGBA_BPTC_UNORM_ARB
+  // currently the only one we use, there's also COMPRESSED_SRGB_ALPHA_BPTC_UNORM_ARB (0x8E8D)
+  // and COMPRESSED_RGB_BPTC_SIGNED_FLOAT_ARB (0x8E8E) and COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_ARB (0x8E8F)
+  #define GL_COMPRESSED_RGBA_BPTC_UNORM_ARB 0x8E8C
+#endif
+
 // ARB_vertex_program / ARB_fragment_program
 extern PFNGLVERTEXATTRIBPOINTERARBPROC		qglVertexAttribPointerARB;
 extern PFNGLENABLEVERTEXATTRIBARRAYARBPROC	qglEnableVertexAttribArrayARB;
@@ -118,6 +130,9 @@ extern PFNGLPROGRAMLOCALPARAMETER4FVARBPROC	qglProgramLocalParameter4fvARB;
 
 // GL_EXT_depth_bounds_test
 extern PFNGLDEPTHBOUNDSEXTPROC              qglDepthBoundsEXT;
+
+// GL_ARB_debug_output
+extern PFNGLDEBUGMESSAGECALLBACKARBPROC    qglDebugMessageCallbackARB;
 
 #if defined( _WIN32 ) && defined(ID_ALLOW_TOOLS)
 
